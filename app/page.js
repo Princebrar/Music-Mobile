@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import Home from "./Components/home";
+import Search from "./Components/search";
 import Explore from "./Components/explore";
 import User from "./Components/user";
 import Sidebar from "./Components/sidebar";
@@ -32,7 +33,7 @@ export default function Page() {
     const onPlayerClose = () => {
         console.log("Player Closed");
         setPlayer(false);
-        setPlaying(!playing);
+        setPlaying(false);
         audioRef.current.currentTime = 0;
     };
     const nextSong = () => {
@@ -49,7 +50,7 @@ export default function Page() {
 
     return (
         <main className="bg-gray-300 flex flex-col h-screen w-full">
-            <div className="flex flex-col h-full min-[1000px]:h-fit">
+            <div className="flex flex-col h-screen max-[1000px]:h-fit">
                 <div className={`flex flex-row h-8 fixed ease-out duration-300 ${!playervisible ? " scale-0" : "scale-100"}`}>
                     <audio ref={audioRef} src="./First Song.m4a" />
                 <div className='flex flex-row bg-zinc-800 w-screen gap-4 content-center justify-center'>
@@ -89,6 +90,7 @@ export default function Page() {
               {view1=="home" && <Home onSongClick={onSongClick}/>}
               {view1=="explore" && <Explore onSongClick={onSongClick}/>}
               {view1=="user" && <User onSongClick={onSongClick}/>}
+              {view1=="search" && <Search onSongClick={onSongClick}/>}
           </div>
           </div>
           </div>   

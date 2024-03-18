@@ -19,6 +19,9 @@ export default function Sidebar({onViewSelect}) {
             <h2 className={`p-3 duration-300 ease-out rounded-lg max-[700px]:text-sm max-[700px]:p-1 max-[1000px]:text-base max-[1000px]:p-2 font-bold cursor-pointer ${view=="user" ? " bg-black text-white":"hover:bg-gray-200"}`} onClick={()=>{handleViewSelect("user")}}>
                 User Profile
             </h2>
+            <h2 className={`p-3 duration-300 ease-out rounded-lg max-[700px]:text-sm max-[700px]:p-1 max-[1000px]:text-base max-[1000px]:p-2 font-bold cursor-pointer ${view=="search" ? " bg-black text-white":"hover:bg-gray-200"}`} onClick={()=>{handleViewSelect("search")}}>
+                Search
+            </h2>
         </div>
         <div className="bg-white w-full flex flex-col p-5 rounded-2xl h-full max-[1000px]:h-0 max-[1000px]:hidden">
             <h1 className="m-3 font-bold">My Library</h1>
