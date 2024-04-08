@@ -1,13 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Song from "./song";
-export default function User({onSongClick}) {
-    const songs = [
-        { Name: "Jatt Life", Singer: "Prince" },
-        { Name: "Thug Life", Singer: "Varinder" },
-        { Name: "Hold On", Singer: "Arjan" },
-        
-    ];
+export default function User({onSongClick,playing,song_playing_data,tracks,isFetching}) {
     return (
         <div className="flex flex-col gap-0 h-full rounded-lg text-white">
         <div className="bg-slate-900 w-full h-2/5 flex items-center p-3">
@@ -31,9 +25,15 @@ export default function User({onSongClick}) {
         <h1 className="m-3 font-bold text-xl">My Playlists</h1>
         <p className="m-3 text-sm">These are all the playlists that you have created:</p>
         <div className='flex flex-row gap-5 p-2 overflow-scroll max-[700px]:gap-3 max-[400px]:gap-2'>
-        {songs.map((song, index) => (
-                                    <Song key={index} name={song.Name} singer={song.Singer} onSongClick={onSongClick}/>
-                                ))}
+        {isFetching ? (
+                            <div className={`backdrop-blur-md backdrop-brightness-150 w-[180px] h-[200px]  text-white rounded-2xl animate-pulse flex flex-col align-middle text-center object-center p-3 pt-[80px] text-xl content-center max-[700px]:p-2 hover:scale-105 duration-300 ease-in-out`}>
+                                <p>Loading...</p>
+                            </div>
+                        ) : (
+                            tracks.map((song, index) => (
+                                <Song key={index} data={song} name={song.title_short} singer={song.artist.name} onSongClick={onSongClick} playing={playing} picture={song.album.cover_xl} song_playing_data={song_playing_data}/>
+                            ))
+                        )}
                     </div>
                     
         </div>
